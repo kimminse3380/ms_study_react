@@ -1,19 +1,26 @@
-import React from "react";
-import {StyleSheet, ScrollView, Text} from 'react-native'
-import TodoListItem from "./TodoListItem";
+import React from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
+import TodoListItem from './TodoListItem';
 
-const Todolist = () => {
-    return (
-        <ScrollView contentContainerStyle={styles.listContainer}>
-            <TodoListItem />
-        </ScrollView>
-    );
+const TodoList = ({todos, onRemove, onToggle}) => {
+  return (
+    <ScrollView contentContainerStyle={styles.listContainer}>
+      {todos.map(todo => (
+        <TodoListItem
+          key={todo.id}
+          {...todo}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        />
+      ))}
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
-    listContainer: {
-        alignItems: 'center',
-    },
+  listContainer: {
+    alignItems: 'center',
+  },
 });
 
-export default Todolist;
+export default TodoList;
